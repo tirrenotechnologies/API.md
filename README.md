@@ -2,33 +2,6 @@
 
 `tirreno('…')` is tirreno's built-in API. It gives your own code the same building blocks the console uses: the current request and page, the logged-in operator, the tracked data of the active API key, detection rules, logging and utilities. Use it to add your own pages to a self-hosted tirreno console.
 
-## How to use
-
-1. Create two files: `assets/pages/<name>.php` for the logic and `assets/pages/views/<name>.html` for the template. 
-2. The page opens at `/<name>` and appears in the console's left menu under the text passed to `$page->setTitle('…')` (write it as a plain string).
-3. In the PHP file, call a service with `tirreno('name')`. These are already defined: `$page`, `$request`, `$response`, `$session`, `$sysop`, `$utils`, `$helpers`, `$constants`, `$db`, `$log`, `$user`, `$ip`.
-4. Start with the `$response` guards: file-based pages also run for guests.
-5. Pass data to the template with `$page->addParams([...])`. In the template, print with `{{ @NAME }}`, read array items with `{{ @row['key'] }}` and loop with `<repeat>`. Arrays and strings are HTML-escaped, so convert entities to arrays first.
-6. An AJAX request (`X-Requested-With: XMLHttpRequest`) to `/<name>` returns the template variables as JSON.
-7. Files named `*.example.php` are not listed or served. To enable a bundled example, copy `x.example.php` to `x.php` and `views/x.example.html` to `views/x.html`.
-
-`assets/pages/vpn-ips.php`
-
-```php
-<?php
-$page->setTitle('VPN IPs');
-$response->redirectNotLoggedIn('/login');
-$response->redirectImproperRole(['operator'], [], '/login');
-$ips = tirreno('queries')->ips->where('ip_vpn', 'IS TRUE')->orderBy('ip_lastseen', 'DESC')->limit(50)->get()->data;
-$page->addParams(['ROWS' => array_map(fn($ip) => ['ip' => $ip->ip, 'isp' => $ip->isp->name], $ips)]);
-```
-
-`assets/pages/views/vpn-ips.html`
-
-```html
-<ul><repeat group="{{ @ROWS }}" value="{{ @row }}"><li>{{ @row['ip'] }} | {{ @row['isp'] }}</li></repeat></ul>
-```
-
 ## Terms
 
 | Term | Meaning |
@@ -40,8 +13,6 @@ $page->addParams(['ROWS' => array_map(fn($ip) => ['ip' => $ip->ip, 'isp' => $ip-
 | Rule | A detection rule such as `I01` ("IP belongs to TOR"). Each key can set its own `value`; a user's `score_details` lists the rules that matched |
 
 ## Services
-
-`tirreno(string $name): object` returns one of 28 services; any other name throws `Exception('Validation failed')`. In the tables, `$name` stands for `tirreno('name')`.
 
 | Name | Return | Summary |
 |---|---|---|
@@ -308,6 +279,33 @@ Internal layers of the built-in console.
 | `$charts->{name}` | `\Tirreno\Models\Chart\…` | Chart data: `blacklist`, `domains`, `emails`, `events`, `fields`, `ips`, `isps`, `logbook`, `phones`, `resources`, `reviewQueue`, `users`, `userAgents`, `watchlist`, `country`, `domain`, `field`, `ip`, `isp`, `resource`, `user`, `userAgent`, `userStats` |
 | `$controllers->{name}` | `\Tirreno\Controllers\Services\…` | Section logic: `api`, `blacklist`, `context`, `countries`, `country`, `devices`, `domain`, `domains`, `emails`, `enrichment`, `events`, `field`, `fields`, `dashboard`, `ip`, `ips`, `isp`, `isps`, `logbook`, `manualCheck`, `phones`, `resource`, `resources`, `reviewQueue`, `rules`, `settings`, `user`, `users`, `userAgent`, `userAgents`, `main` |
 | `$pages->{name}` | `\Tirreno\Controllers\Pages\…` | Console pages: `api`, `blacklist`, `countries`, `country`, `devices`, `domain`, `domains`, `emails`, `events`, `field`, `fields`, `dashboard`, `ip`, `ips`, `isp`, `isps`, `logbook`, `manualCheck`, `phones`, `resource`, `resources`, `reviewQueue`, `rules`, `settings`, `user`, `users`, `userAgent`, `userAgents`, `watchlist`, `main`, `error`, `logout` |
+
+## How to use
+
+1. Create two files: `assets/pages/<name>.php` for the logic and `assets/pages/views/<name>.html` for the template. 
+2. The page opens at `/<name>` and appears in the console's left menu under the text passed to `$page->setTitle('…')` (write it as a plain string).
+3. In the PHP file, call a service with `tirreno('name')`. These are already defined: `$page`, `$request`, `$response`, `$session`, `$sysop`, `$utils`, `$helpers`, `$constants`, `$db`, `$log`, `$user`, `$ip`.
+4. Start with the `$response` guards: file-based pages also run for guests.
+5. Pass data to the template with `$page->addParams([...])`. In the template, print with `{{ @NAME }}`, read array items with `{{ @row['key'] }}` and loop with `<repeat>`. Arrays and strings are HTML-escaped, so convert entities to arrays first.
+6. An AJAX request (`X-Requested-With: XMLHttpRequest`) to `/<name>` returns the template variables as JSON.
+7. Files named `*.example.php` are not listed or served. To enable a bundled example, copy `x.example.php` to `x.php` and `views/x.example.html` to `views/x.html`.
+
+`assets/pages/vpn-ips.php`
+
+```php
+<?php
+$page->setTitle('VPN IPs');
+$response->redirectNotLoggedIn('/login');
+$response->redirectImproperRole(['operator'], [], '/login');
+$ips = tirreno('queries')->ips->where('ip_vpn', 'IS TRUE')->orderBy('ip_lastseen', 'DESC')->limit(50)->get()->data;
+$page->addParams(['ROWS' => array_map(fn($ip) => ['ip' => $ip->ip, 'isp' => $ip->isp->name], $ips)]);
+```
+
+`assets/pages/views/vpn-ips.html`
+
+```html
+<ul><repeat group="{{ @ROWS }}" value="{{ @row }}"><li>{{ @row['ip'] }} | {{ @row['isp'] }}</li></repeat></ul>
+```
 
 ## Known issues
 

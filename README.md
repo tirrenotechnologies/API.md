@@ -317,3 +317,42 @@ $page->addParams(['ROWS' => array_map(fn($ip) => ['ip' => $ip->ip, 'isp' => $ip-
 | `tirreno('users')`, `tirreno('ips')` | `TypeError` for a guest (use `$queries->users` / `$queries->ips`) |
 | `$utils->nowForCurrentOperator()` | Returns UTC time; use `$utils->timezones->localizeForActiveOperator($utils->nowUtc())` |
 | Operator `*~` | SQL error; use `ILIKE` or `!~*` |
+
+## Resources
+
+| Resource | URL |
+|----------|-----|
+| Live Demo | [play.tirreno.com](https://play.tirreno.com) (admin/tirreno) |
+| Documentation | [docs.tirreno.com](https://docs.tirreno.com) |
+| Resource center | [tirreno.com/bat](https://www.tirreno.com/bat/) |
+| Administration guide | [github.com/tirrenotechnologies/ADMIN.md](https://github.com/tirrenotechnologies/ADMIN.md) |
+| API reference | [github.com/tirrenotechnologies/API.md](https://github.com/tirrenotechnologies/API.md) |
+| GitHub | [github.com/tirrenotechnologies/tirreno](https://github.com/tirrenotechnologies/tirreno) |
+| GitLab Mirror | [gitlab.com/tirreno/tirreno](https://gitlab.com/tirreno/tirreno) |
+| Docker Hub | [hub.docker.com/r/tirreno/tirreno](https://hub.docker.com/r/tirreno/tirreno) |
+| Docker Repo | [github.com/tirrenotechnologies/docker](https://github.com/tirrenotechnologies/docker) |
+| Packagist | [packagist.org/packages/tirreno/tirreno](https://packagist.org/packages/tirreno/tirreno) |
+| PHP Tracker | [github.com/tirrenotechnologies/tirreno-php-tracker](https://github.com/tirrenotechnologies/tirreno-php-tracker) |
+| Python Tracker | [github.com/tirrenotechnologies/tirreno-python-tracker](https://github.com/tirrenotechnologies/tirreno-python-tracker) |
+| Node.js Tracker | [github.com/tirrenotechnologies/tirreno-nodejs-tracker](https://github.com/tirrenotechnologies/tirreno-nodejs-tracker) |
+| Community Chat | [chat.tirreno.com](https://chat.tirreno.com) |
+| Support Email | ping@tirreno.com |
+| Security Email | security@tirreno.com |
+
+---
+
+## Found a mistake?
+
+If you have found a mistake in the documentation, no matter how large or small, please let us know by [creating a new issue](https://github.com/tirrenotechnologies/tirreno/issues) in the tirreno repository.
+
+---
+
+## License
+
+tirreno and this documentation are licensed under the **GNU Affero General Public License v3 (AGPL-3.0)**.
+
+The name "tirreno" is a registered trademark of tirreno technologies sàrl.
+
+---
+
+*tirreno Copyright (C) 2026 tirreno technologies sàrl, Vaud, Switzerland.*

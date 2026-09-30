@@ -318,13 +318,11 @@ $page->addParams(['ROWS' => array_map(fn($ip) => ['ip' => $ip->ip, 'isp' => $ip-
 | `$utils->nowForCurrentOperator()` | Returns UTC time; use `$utils->timezones->localizeForActiveOperator($utils->nowUtc())` |
 | Operator `*~` | SQL error; use `ILIKE` or `!~*` |
 
-
 ## Resources
 
 | Resource | URL |
 |----------|-----|
 | Live Demo | [play.tirreno.com](https://play.tirreno.com) (admin/tirreno) |
-| Documentation | [docs.tirreno.com](https://docs.tirreno.com) |
 | Resource center | [tirreno.com/bat](https://www.tirreno.com/bat/) |
 | Developers Guide | [github.com/tirrenotechnologies/DEVELOPMENT.md](https://github.com/tirrenotechnologies/DEVELOPMENT.md) |
 | Administrator guide | [github.com/tirrenotechnologies/ADMIN.md](https://github.com/tirrenotechnologies/ADMIN.md) |
@@ -341,7 +339,6 @@ $page->addParams(['ROWS' => array_map(fn($ip) => ['ip' => $ip->ip, 'isp' => $ip-
 | Community Chat | [chat.tirreno.com](https://chat.tirreno.com) |
 
 ---
-
 
 ## Found a mistake?
 

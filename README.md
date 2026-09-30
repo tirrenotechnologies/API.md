@@ -1,6 +1,6 @@
 # tirreno API reference
 
-`tirreno('…')` is tirreno's built-in API. It gives your own code the same building blocks the console uses: the current request and page, the logged-in operator, the tracked data of the active API key, detection rules, logging and utilities. Use it to add your own pages to a self-hosted tirreno console.
+`tirreno('…')` is tirreno's built-in API. It gives your own code the same building blocks the console uses: the current request and page, the logged-in operator, tracked entities and events, detection rules, logging and utilities. Use it to add your own pages to the console and build your own application on tirreno.
 
 ## Terms
 
@@ -318,26 +318,26 @@ $page->addParams(['ROWS' => array_map(fn($ip) => ['ip' => $ip->ip, 'isp' => $ip-
 | `$utils->nowForCurrentOperator()` | Returns UTC time; use `$utils->timezones->localizeForActiveOperator($utils->nowUtc())` |
 | Operator `*~` | SQL error; use `ILIKE` or `!~*` |
 
+
 ## Resources
 
 | Resource | URL |
 |----------|-----|
 | Live Demo | [play.tirreno.com](https://play.tirreno.com) (admin/tirreno) |
-| Documentation | [docs.tirreno.com](https://docs.tirreno.com) |
 | Resource center | [tirreno.com/bat](https://www.tirreno.com/bat/) |
 | Administration guide | [github.com/tirrenotechnologies/ADMIN.md](https://github.com/tirrenotechnologies/ADMIN.md) |
+| Developers Guide | [github.com/tirrenotechnologies/DEVELOPMENT.md](https://github.com/tirrenotechnologies/DEVELOPMENT.md) |
+| User Guide | [github.com/tirrenotechnologies/USER.md](https://github.com/tirrenotechnologies/USER.md) |
 | API reference | [github.com/tirrenotechnologies/API.md](https://github.com/tirrenotechnologies/API.md) |
 | GitHub | [github.com/tirrenotechnologies/tirreno](https://github.com/tirrenotechnologies/tirreno) |
 | GitLab Mirror | [gitlab.com/tirreno/tirreno](https://gitlab.com/tirreno/tirreno) |
 | Docker Hub | [hub.docker.com/r/tirreno/tirreno](https://hub.docker.com/r/tirreno/tirreno) |
-| Docker Repo | [github.com/tirrenotechnologies/docker](https://github.com/tirrenotechnologies/docker) |
 | Packagist | [packagist.org/packages/tirreno/tirreno](https://packagist.org/packages/tirreno/tirreno) |
 | PHP Tracker | [github.com/tirrenotechnologies/tirreno-php-tracker](https://github.com/tirrenotechnologies/tirreno-php-tracker) |
 | Python Tracker | [github.com/tirrenotechnologies/tirreno-python-tracker](https://github.com/tirrenotechnologies/tirreno-python-tracker) |
 | Node.js Tracker | [github.com/tirrenotechnologies/tirreno-nodejs-tracker](https://github.com/tirrenotechnologies/tirreno-nodejs-tracker) |
+| WordPress Tracker | [github.com/tirrenotechnologies/tirreno-wordpress-tracker](https://github.com/tirrenotechnologies/tirreno-wordpress-tracker) |
 | Community Chat | [chat.tirreno.com](https://chat.tirreno.com) |
-| Support Email | ping@tirreno.com |
-| Security Email | security@tirreno.com |
 
 ---
 
